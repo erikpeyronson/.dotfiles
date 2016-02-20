@@ -40,14 +40,14 @@
 ;;;;;;;;;;;;;;;
 
 ;;ECB
-(require 'ecb)
-;;(ecb-activate)
+;(require 'ecb)
+(ecb-activate)
 ;;ECB KEYBINDINGS
 (global-set-key (kbd "<M-left>") 'ecb-goto-window-sources)
 (global-set-key (kbd "<M-right>") 'ecb-goto-window-edit1)
 
 ;;Autopair
-(require 'autopair)
+;(require 'autopair)
 ;(autopair-global-mode)
 
 ;;autostart plugins
