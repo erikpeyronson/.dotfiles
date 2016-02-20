@@ -1,0 +1,45 @@
+[global_config]
+  title_transmit_bg_color = "#710004"
+[keybindings]
+  go_left = <Primary>Left
+  go_down = <Primary>Down
+  go_right = <Primary>Right
+  go_up = <Primary>Up
+[profiles]
+  [[default]]
+    use_system_font = False
+    font = Monospace 12
+    background_image = None
+[layouts]
+  [[default]]
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+    [[[window0]]]
+      type = Window
+      parent = ""
+  [[irssi]]
+    [[[child0]]]
+      position = 0:0
+      type = Window
+      order = 0
+      parent = ""
+      size = 1080, 1885
+    [[[child1]]]
+      position = 772
+      type = VPaned
+      order = 0
+      parent = child0
+    [[[terminal3]]]
+      profile = default
+      command = sshserver | echo sigenarunge22 && screen -r
+      type = Terminal
+      order = 1
+      parent = child1
+    [[[terminal2]]]
+      profile = default
+      command = ""
+      type = Terminal
+      order = 0
+      parent = child1
+[plugins]
