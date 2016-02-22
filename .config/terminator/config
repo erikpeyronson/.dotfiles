@@ -1,5 +1,6 @@
 [global_config]
   title_transmit_bg_color = "#710004"
+  suppress_multiple_term_dialog = True
 [keybindings]
   go_left = <Alt>a
   go_down = <Alt>s
@@ -43,7 +44,7 @@
       command = ssh ssh.peyronson.se
     [[[terminal5]]]
       profile = default
-      command = 'ssh -t ssh.peyronson.se "screen -r"'
+      command = 'ssh -t peyron@ssh.peyronson.se "screen -r"'
       type = Terminal
       order = 1
       parent = child1
