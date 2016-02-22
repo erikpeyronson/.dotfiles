@@ -1,7 +1,8 @@
 dir=~/.dotfiles                    # dotfiles directory
+confdir=~/.dotfiles/.config        # config directory
 olddir=~/.dotfiles_old             # old dotfiles backup directory
 files=".bashrc .emacs .bash_aliases .bash_logout .emacs.d"        # list of files/folders to symlink in homedir
-
+folders="terminator"
 ##########
 
 # create dotfiles_old in homedir
@@ -22,5 +23,12 @@ for file in $files; do
     ln -s $dir/$file ~/$file
 done
 
+#The same as above but folders in .config
+for folder in $folders; do
+    echo "Moving old folders from .config to $olddir/.config_old"
+    mv ~/.config/$folder ~/.dotfiles_old/.config_old
+    echo "Creating symlink to $file in .comfig directory."
+    ln -s $confdir/$folder ~/.config/$folder
+done
+
 source ~/.bashrc
-source ~/.vimrc
