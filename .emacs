@@ -14,6 +14,7 @@
   '(
     ecb
     autopair
+    nurumacs
   ) "a list of packages to ensure are installed at launch.")
 
 (require 'cl)
@@ -47,12 +48,18 @@
 (global-set-key (kbd "<M-right>") 'ecb-goto-window-edit1)
 
 ;;Autopair
-;(require 'autopair)
+(require 'autopair)
 ;(autopair-global-mode)
 
-;;autostart plugins
+;;nurumacs
+(require 'nurumacs)
+
+
+
+;;autostart minor modes
 (global-linum-mode 1)
 (cua-mode)
+
 
 ;;Autofill for text mode
 (add-hook 'text-mode-hook 'auto-fill-mode)
