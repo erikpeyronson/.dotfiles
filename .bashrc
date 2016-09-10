@@ -84,9 +84,6 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-# colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
 # some more ls aliases
 alias ll='ls -alF'
 alias la='ls -A'
@@ -116,4 +113,10 @@ if ! shopt -oq posix; then
   fi
 fi
 
+#Set WWW_HOME variable to Azire IP-test
+WWW_HOME='https://www.azirevpn.com/check'
+export WWW_HOME
+export EDITOR=nano
 
+stty stop undef
+stty start undef
