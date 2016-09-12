@@ -95,5 +95,5 @@
 ;;C-x C-m compile
 (global-set-key "\C-x\C-m" 'compile)
 ;;default compile command
-(setq compile-command "g++ -std=c++14 -Wall -o")
+(setq compile-command "g++ -std=c++17 -pedantic -Wall -Wextra -o")
 
