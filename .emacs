@@ -87,5 +87,13 @@
  ;; If there is more than one, they won't work right.
  )
 
-;;indent using spaces
-(setq-default indent-tabs-mode nil)
+;;keybindings
+
+;;Set backspace to ctrl+h
+(global-set-key [(control ?h)] 'delete-backward-char)
+
+;;C-x C-m compile
+(global-set-key "\C-x\C-m" 'compile)
+;;default compile command
+(setq compile-command "g++ -std=c++14 -Wall -o")
+
