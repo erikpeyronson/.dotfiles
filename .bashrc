@@ -113,6 +113,8 @@ if ! shopt -oq posix; then
   fi
 fi
 
+
+
 #Set WWW_HOME variable to Azire IP-test
 WWW_HOME='https://www.azirevpn.com/check'
 export WWW_HOME

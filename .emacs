@@ -88,12 +88,27 @@
  )
 
 ;;keybindings
+(global-set-key (kbd "C-M-7") (lambda () (interactive) (insert "{")))
+(global-set-key (kbd "C-M-8") (lambda () (interactive) (insert "[")))
+(global-set-key (kbd "C-M-9") (lambda () (interactive) (insert "]")))
+(global-set-key (kbd "C-M-0") (lambda () (interactive) (insert "}")))
+(global-set-key (kbd "C-M-+") (lambda () (interactive) (insert "\\")))
+
 
 ;;Set backspace to ctrl+h
 (global-set-key [(control ?h)] 'delete-backward-char)
 
 ;;C-x C-m compile
 (global-set-key "\C-x\C-m" 'compile)
-;;default compile command
+
+;; Write brackets with C- compile command
 (setq compile-command "g++ -std=c++17 -pedantic -Wall -Wextra -o")
+
+(put 'set-goal-column 'disabled nil)
+
+
+
+
+
+
 
