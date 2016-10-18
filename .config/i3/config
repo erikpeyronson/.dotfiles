@@ -212,8 +212,16 @@ bar {
 # set screen layout
 exec ~/.screenlayout/standard-screen-layout.sh
 
+# set wallpaper
+exec --no-startup-id nitrogen --restore
+
 # autostart applications
 
+# gnome terminal
+exec --no-startup-id i3-msg 'workspace u:term; exec gnome-terminal; exec gnome-terminal'
+
+# focus follows mouse
+focus_follows_mouse no
 
 # chrome mouse warping when changing screen
 mouse_warping none

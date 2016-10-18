@@ -49,7 +49,7 @@ run_watch VPN {
         pidfile = "/var/run/openvpn/pid"
 }
 path_exists VPN {
-        path = "/var/run/openvpn"
+        path = "/sys/class/net/tun0"
 }
 
 tztime local {

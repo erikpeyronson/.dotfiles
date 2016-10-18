@@ -133,7 +133,7 @@ workspace u:term output DP1
 
 # special workspace emacs
 bindsym $mod+i workspace i:emacs; exec [ $(ps h -C emacs | wc -l) = 0 ] && emacs
-bindsym $mod+Shift+i workspace i:emacs
+bindsym $mod+Shift+i move container to workspace i:emacs
 workspace i:emacs output HDMI2
 
 # special workspace browser
@@ -212,7 +212,13 @@ bar {
 # set screen layout
 exec ~/.screenlayout/standard-screen-layout.sh
 
+# set wallpaper
+exec --no-startup-id nitrogen --restore
+
 # autostart applications
+
+# gnome terminal
+exec --no-startup-id i3-msg 'workspace u:term; exec gnome-terminal; exec gnome-terminal'
 
 
 # chrome mouse warping when changing screen
