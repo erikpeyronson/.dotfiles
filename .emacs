@@ -6,10 +6,13 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ecb-layout-name "custom-layout-4")
+ '(custom-enabled-themes (quote (tango-dark)))
+ '(custom-safe-themes
+   (quote
+    ("877eeadc7d38ee4c4c232de6d707cc1d301bfb6c24844d2d6da62ccbce56cc3d" "7144ed173efe8b3f9306cc567eb231ebe6630dbeeaaf600b0c5e089317531f4c" default)))
+ '(ecb-layout-name "left2")
  '(ecb-options-version "2.40")
- '(ecb-windows-width 0.15)
- '(inhibit-startup-screen t))
+ '(ecb-windows-width 0.15))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -64,8 +67,8 @@
 ;;;;;;;;;;;;;;;;;
 
 ;;ECB
-;(require 'ecb)
-(ecb-activate)
+;;(require 'ecb)
+;;(ecb-activate)
 
 
 ;;Autopair

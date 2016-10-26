@@ -19,3 +19,6 @@ alias g++14debug='g++ -std=c++14 -Wall -g'
 alias shortprompt='PS1="\[\033[01;32m\]\u\[\033[00m\]\$ "'
 alias longprompt='PS1="\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\ $ "'
 alias gitprompt='PS1="$(__git_ps1)$PS1"'  
+
+alias sd='sudo shutdown now'
+alias synctorrents='scp ~/Downloads/torrents 192.168.0.200:/storage/rtorrent/torrents'

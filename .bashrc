@@ -58,6 +58,8 @@ fi
 
 if [ "$color_prompt" = yes ]; then
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1='[\u@\h \W]\$ '	
+   		
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -117,6 +119,7 @@ fi
 
 #Set WWW_HOME variable to Azire IP-test
 WWW_HOME='https://www.azirevpn.com/check'
+export PATH="~/.scripts:$PATH"
 export WWW_HOME
 export EDITOR=nano
 
