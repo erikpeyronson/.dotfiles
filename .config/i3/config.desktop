@@ -15,6 +15,7 @@ workspace kp3:calibre output HDMI1
 workspace kp4:bitcoin output HDMI1
 
 # special workspaces
+###
 
 # special workspace mail
 bindsym $mod+KP_0 workspace kp0:mail; exec [ $(ps h -C thunderbird | wc -l) = 0 ] && thunderbird
@@ -37,3 +38,16 @@ bindsym XF86AudioPlay exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2
 bindsym XF86AudioNext exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
 bindsym XF86AudioPrev exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
 
+# move workspace to different output
+bindsym $mod+Control+Shift+j move workspace to output left
+bindsym $mod+Control+Shift+odiaeresis move workspace to output right
+
+
+# autostart applications
+###
+
+# gnome terminal
+exec --no-startup-id i3-msg 'workspace u:term; exec gnome-terminal; exec gnome-terminal'
+
+# set screen layout
+exec ~/.scripts/screenlayout/desktop-default.sh

@@ -8,4 +8,7 @@ exec xinput --disable 13
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp   exec sudo ~/.scripts/increase-brightness.sh 
-bindsym XF86MonBrightnessDown exec sudo ~/.scripts/decrease-brightness.sh 
+bindsym XF86MonBrightnessDown exec sudo ~/.scripts/decrease-brightness.sh
+
+# set screen layout
+exec ~/.scripts/screenlayout/laptop-default.sh
