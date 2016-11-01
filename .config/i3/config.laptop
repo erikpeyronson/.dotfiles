@@ -1,0 +1,11 @@
+# this i3 configuration template contains system specific
+# configuration for a thinkpad l450 system
+
+# disable touchpad
+exec xinput --disable 13
+
+# brightness keys
+
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp   exec sudo ~/.scripts/increase-brightness.sh 
+bindsym XF86MonBrightnessDown exec sudo ~/.scripts/decrease-brightness.sh 
