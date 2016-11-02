@@ -12,7 +12,8 @@
     ("877eeadc7d38ee4c4c232de6d707cc1d301bfb6c24844d2d6da62ccbce56cc3d" "7144ed173efe8b3f9306cc567eb231ebe6630dbeeaaf600b0c5e089317531f4c" default)))
  '(ecb-layout-name "left2")
  '(ecb-options-version "2.40")
- '(ecb-windows-width 0.15))
+ '(ecb-windows-width 0.15)
+ '(package-selected-packages (quote (color-theme nurumacs ecb autopair))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -84,6 +85,7 @@
 
 ;;Autofill for text mode
 (add-hook 'text-mode-hook 'auto-fill-mode)
+(setq-default fill-column 72)
 
 ;;;;;;;;;;;;;;;;;;;;;;
 ;;;ARDUINO MODE;;;;;;;
