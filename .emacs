@@ -13,7 +13,7 @@
  '(ecb-layout-name "left2")
  '(ecb-options-version "2.40")
  '(ecb-windows-width 0.15)
- '(package-selected-packages (quote (color-theme nurumacs ecb autopair))))
+ '(package-selected-packages (quote (sublimity color-theme nurumacs ecb autopair))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -40,6 +40,10 @@
     ecb
     autopair
     nurumacs
+    sublimity
+    ;; sublimity-map
+    ;; sublimity-attractive
+    ;; sublimity-scroll
   ) "a list of packages to ensure are installed at launch.")
 
 (require 'cl)
@@ -87,6 +91,12 @@
 (add-hook 'text-mode-hook 'auto-fill-mode)
 (setq-default fill-column 72)
 
+;; diable toolbar by default
+(tool-bar-mode -1)
+
+;; disable menubar by default
+(menu-bar-mode -1)
+
 ;;;;;;;;;;;;;;;;;;;;;;
 ;;;ARDUINO MODE;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;
@@ -128,7 +138,24 @@
 
 (put 'set-goal-column 'disabled nil)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;Major mode file extensions;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+
+
+;; Sublimity
+(add-to-list 'load-path "/path/to/.emacs.d/sublimity/")
+(require 'sublimity)
+(require 'sublimity-scroll)
+(require 'sublimity-map)
+(require 'sublimity-attractive)
+(sublimity-mode 1)
+(setq sublimity-attractive-centering-width nil)
+(setq sublimity-map-size 21)
+(sublimity-attractive-hide-bars)
+(sublimity-attractive-hide-vertical-border)
 
 
 
