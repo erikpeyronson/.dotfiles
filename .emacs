@@ -6,14 +6,16 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-enabled-themes (quote (tango-dark)))
+ '(custom-enabled-themes (quote (labburn)))
  '(custom-safe-themes
    (quote
-    ("877eeadc7d38ee4c4c232de6d707cc1d301bfb6c24844d2d6da62ccbce56cc3d" "7144ed173efe8b3f9306cc567eb231ebe6630dbeeaaf600b0c5e089317531f4c" default)))
+    ("4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" "f57b3f1817b510d80a11d5ca859a0f09e6b0834ddf9a277b46c1e95fb40c6e58" "f69de3a2b9d54d49685e03debb4b102747491a624dfc172a94dee1455e69f01d" "2eccc1073f44cf1e0da01e20f3e7954cdd003ec18abfb24302f2b40cf6c1a78d" "877eeadc7d38ee4c4c232de6d707cc1d301bfb6c24844d2d6da62ccbce56cc3d" "7144ed173efe8b3f9306cc567eb231ebe6630dbeeaaf600b0c5e089317531f4c" default)))
  '(ecb-layout-name "left2")
  '(ecb-options-version "2.40")
  '(ecb-windows-width 0.15)
- '(package-selected-packages (quote (sublimity color-theme nurumacs ecb autopair))))
+ '(package-selected-packages
+   (quote
+    (color-theme-sanityinc-solarized sublimity nurumacs labburn-theme ecb autopair))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -157,7 +159,5 @@
 (sublimity-attractive-hide-bars)
 (sublimity-attractive-hide-vertical-border)
 
-
-
-
-
+;; color
+(load-theme 'labburn t)
