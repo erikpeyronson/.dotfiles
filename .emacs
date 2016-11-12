@@ -153,7 +153,7 @@
 (require 'sublimity-scroll)
 (require 'sublimity-map)
 (require 'sublimity-attractive)
-(sublimity-mode 1)
+;;(sublimity-mode 1)
 (setq sublimity-attractive-centering-width nil)
 (setq sublimity-map-size 21)
 (sublimity-attractive-hide-bars)
