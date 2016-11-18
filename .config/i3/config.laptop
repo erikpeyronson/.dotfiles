@@ -12,3 +12,10 @@ bindsym XF86MonBrightnessDown exec sudo ~/.scripts/decrease-brightness.sh
 
 # set screen layout
 exec ~/.scripts/screenlayout/laptop-default.sh
+
+# rebuild config file and reload the configuration file
+bindsym $mod+Shift+c exec i3-mkcfg-laptop.sh; reload
+# rebuild config file restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r exec i3-mkcfg-laptop.sh; exec i3-msg restart
+
+#new comment to try the keybind asdfasdf hej din gay asdfasdfasdf

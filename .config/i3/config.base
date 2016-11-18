@@ -118,11 +118,6 @@ bindsym $mod+Shift+i move container to workspace i:emacs
 bindsym $mod+o workspace o:www; exec [ $(ps h -C chrome | wc -l) = 0 ] && google-chrome-stable
 bindsym $mod+Shift+o move container to workspace o:www
 
-# reload the configuration file
-bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-
 # restart i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
