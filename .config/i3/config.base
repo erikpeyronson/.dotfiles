@@ -115,7 +115,7 @@ bindsym $mod+i workspace i:emacs; exec [ $(ps h -C emacs | wc -l) = 0 ] && emacs
 bindsym $mod+Shift+i move container to workspace i:emacs
 
 # special workspace browser
-bindsym $mod+o workspace o:www; exec [ $(ps h -C chrome-sandbox | wc -l) = 0 ] && chromium
+bindsym $mod+o workspace o:www; exec [ $(ps h -C chrome | wc -l) = 0 ] && google-chrome-stable
 bindsym $mod+Shift+o move container to workspace o:www
 
 # reload the configuration file
@@ -127,9 +127,9 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # Pulse Audio controls
-bindcode XF86AudioLowerVolume exec amixer -c 0 -- sset Master playback 1%- #increase sound volume
-bindcode XF86AudioRaiseVolume exec amixer -c 0 -- sset Master playback 1%+ #decrease sound volume
-bindcode XF86Mute exec pactl set-sink-mute 0o toggle # mute sound
+bindcode XF86AudioLowerVolume exec amixer -c 1 -- sset Master playback 1%- #increase sound volume
+bindcode XF86AudioRaiseVolume exec amixer -c 1 -- sset Master playback 1%+ #decrease sound volume
+bindcode XF86AudioMute exec pactl set-sink-mute 0o toggle # mute sound
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -169,6 +169,11 @@ bar {
 exec ~/.scripts/screenlayout/desktop-default.sh
 exec setxkbmap -layout se
 
+
+# toggle keyboard layout between se and u
+bindsym  $mod+y exec ~/.scripts/toggle-keyboard-layout.sh
+
+
 # set wallpaper
 exec --no-startup-id nitrogen --restore
 
@@ -195,5 +200,3 @@ focus_follows_mouse no
 
 # chrome mouse warping when changing screen
 mouse_warping none
-
-
