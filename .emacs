@@ -13,6 +13,7 @@
  '(ecb-layout-name "left2")
  '(ecb-options-version "2.40")
  '(ecb-windows-width 0.15)
+ '(inhibit-startup-screen t)
  '(package-selected-packages
    (quote
     (color-theme-sanityinc-solarized sublimity nurumacs labburn-theme ecb autopair))))
@@ -124,11 +125,17 @@
 ;;C-X C-m compile
 (global-set-key "\C-x\C-m" 'compile)
 
+;; M-c M-x uncomment region
+(global-set-key "\C-c\M-c" 'uncomment-region)
+
 ;;Compile comman
 (setq compile-command "g++ -std=c++17 -pedantic -Wall -Wextra -o")
 
 ;;C-x C-b used for buffer selection
 (global-set-key (kbd "C-x C-b") 'bs-show)
+
+;;indent using spaces instead of tabs
+(setq-default indent-tabs-mode nil)
 
 ;;ECB KEYBINDINGS
 (global-set-key (kbd "<M-up>") 'ecb-goto-window-directories)
@@ -145,7 +152,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
-
+(add-to-list 'auto-mode-alist '("\\.tcc\\'" . c++-mode))
 
 ;; Sublimity
 (add-to-list 'load-path "/path/to/.emacs.d/sublimity/")
@@ -153,7 +160,7 @@
 (require 'sublimity-scroll)
 (require 'sublimity-map)
 (require 'sublimity-attractive)
-(sublimity-mode 1)
+;;(sublimity-mode 1)
 (setq sublimity-attractive-centering-width nil)
 (setq sublimity-map-size 21)
 (sublimity-attractive-hide-bars)
