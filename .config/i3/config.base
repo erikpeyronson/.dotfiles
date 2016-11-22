@@ -122,9 +122,12 @@ bindsym $mod+Shift+o move container to workspace o:www
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # Pulse Audio controls
-bindcode XF86AudioLowerVolume exec amixer -c 1 -- sset Master playback 1%- #increase sound volume
-bindcode XF86AudioRaiseVolume exec amixer -c 1 -- sset Master playback 1%+ #decrease sound volume
-bindcode XF86AudioMute exec pactl set-sink-mute 0o toggle # mute sound
+bindsym XF86AudioLowerVolume exec amixer -c 1 -- sset Master playback 1%- #increase sound volume
+bindsym XF86AudioRaiseVolume exec amixer -c 1 -- sset Master playback 1%+ #decrease sound volume
+bindsym XF86AudioMute exec amixer -D pulse set Master 1+ toggle # mute sound
+
+# Suspend button
+bindsym XF86Sleep exec systemctl suspend
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -169,7 +172,7 @@ exec setxkbmap -layout se
 bindsym  $mod+y exec ~/.scripts/toggle-keyboard-layout.sh
 
 
-# set wallpaper
+# set wallpape
 exec --no-startup-id nitrogen --restore
 
 # autostart applications
@@ -178,17 +181,6 @@ exec nm-applet
 
 # dropbox
 exec dropbox start
-
-
-# gnome terminal
-#exec --no-startup-id i3-msg 'workspace p:utils'
-#exec --no-startup-id gnome-terminal 
-#exec --no-startup-id gnome-terminal 
-#exec i3-msg split v
-#exec --no-starutp-id gnome-terminal 
-
-#vpn
-#exec sudo screen openvpn --config ~/.vpn/AzireVPN-SE.ovpn
 
 # focus follows mouse
 focus_follows_mouse no
