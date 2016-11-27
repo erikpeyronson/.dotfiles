@@ -10,8 +10,8 @@ set $mod Mod4
 font pango: ubuntu monospace 10
 
 # Colors
-client.focused_inactive #333333 #5f676a #ffffff #484e50
-client.focused          #4c7899 #888888 #222222 #2e9ef4
+client.focused_inactive #333333 #222222 #ffffff #484e50
+client.focused          #4c7899 #999999 #222222 #2e9ef4
 client.unfocused        #333333 #222222 #888888 #292d2e
 client.urgent           #2f343a #900000 #ffffff #900000
 

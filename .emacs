@@ -122,6 +122,7 @@
 
 ;;Set backspace to ctrl+h
 (global-set-key [(control ?h)] 'delete-backward-char)
+(global-set-key (kbd "C-M-h") 'backward-kill-word)
 ;;C-X C-m compile
 (global-set-key "\C-x\C-m" 'compile)
 
