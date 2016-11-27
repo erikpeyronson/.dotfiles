@@ -8,22 +8,26 @@
 
 general {
         colors = true
-        interval = 5
-	markup = pango
+        interval = 1
+        color_good = "#afd83a"# "#8DD800"
+        color_bad = "#d66b6b"
+        color_degraded = "#383830"     
 }
 
+
 order += "disk /"
-#order += "disk /media/erik/storage"
-#order += "disk /media/erik/server"
-#order += "run_watch DHCP"
-#order += "run_watch VPN"
-#order += "path_exists VPN"
-order += "ipv6"
-order += "ethernet _first_"
-#order += "wireless _first_"
-#order += "battery 0"
+order += "disk /media/server"
 order += "load"
-order += "volume master"
+order += "cpu_temperature 0"
+order += "cpu_temperature 1"
+order += "cpu_temperature 2"
+order += "cpu_temperature 3"
+order += "wireless _first_"
+order += "path_exists VPN"
+order += "ipv6"
+order += "run_watch DHCP"
+order += "ethernet _first_"
+order += "volume_master"
 order += "tztime local"
 
 wireless _first_ {
@@ -33,12 +37,8 @@ wireless _first_ {
 
 ethernet _first_ {
         # if you use %speed, i3status requires root privileges
-        format_up = "E: %ip "#(%speed)"
+        format_up = "E: %ip (%speed)"
         format_down = "E: down"
-}
-
-battery 0 {
-        format = "%status %percentage %remaining"
 }
 
 run_watch DHCP {
@@ -46,10 +46,12 @@ run_watch DHCP {
 }
 
 run_watch VPN {
-        pidfile = "/var/run/openvpn/pid"
+        pidfile = "/var/run/vpnc/pid"
 }
+
 path_exists VPN {
-        path = "/var/run/openvpn"
+     # path exists when a VPN tunnel launched by nmcli/nm-applet is active
+     path = "/proc/sys/net/ipv4/conf/tun0"
 }
 
 tztime local {
@@ -57,24 +59,43 @@ tztime local {
 }
 
 load {
-        format = "%1min"
+        format = "%1min %5min %15min"
 }
-
-disk "/" {
-        format = "sda: %avail"
-      # format = <span foreground=#00ff00 >ssd:</span> %avail"
+cpu_temperature 0 {
+       format = "%degrees °C"
+       path = "/sys/devices/platform/coretemp.0/hwmon/hwmon1/temp1_input"
+       max_threshold = 70
+  
 }
-disk "/media/erik/storage" {
-        format = "sdb: %avail"
+cpu_temperature 1 {
+       format = "%degrees °C"
+       path = "/sys/devices/platform/coretemp.0/hwmon/hwmon1/temp2_input"
+       max_threshold = 70
 }
-disk "/media/erik/server" {
-        format = "nfs: %avail"
+cpu_temperature 2 {
+       format = "%degrees °C"
+       path = "/sys/devices/platform/coretemp.0/hwmon/hwmon1/temp3_input"       
+       max_threshold = 70
+}      
+cpu_temperature 3 {
+       format = "%degrees °C" 
+       path = "/sys/devices/platform/coretemp.0/hwmon/hwmon1/temp4_input"   
+       max_threshold = 70
 }
 
 volume master {
-    format = "♪:%volume"
-    format_muted = "\uf1e6 %volume"
-    device = "default"
-    mixer = "Master"
-    mixer_idx = 0
+        format = "♪: %volume"
+        format_muted = "♪: mute"
+        device = "default"
+        mixer = "Master"
+        mixer_idx = 0
+}
+
+
+disk "/" {
+        format = "sda: %avail"
+}
+
+disk "/media/server" {
+        format = "nfs: %avail"
 }
