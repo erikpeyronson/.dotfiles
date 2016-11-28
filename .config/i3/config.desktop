@@ -62,3 +62,7 @@ exec ~/.scripts/screenlayout/desktop-default.sh
 bindsym $mod+Shift+c exec i3-mkcfg-laptop.sh; reload
 # rebuild config file restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r exec i3-mkcfg-laptop.sh; exec i3-msg restart
+
+# Cycle through workspaces on active monitor
+bindsym $mod+Up exec python ~/.scripts/i3-cycle-workspace.py up
+bindsym $mod+Down exec python ~/.scripts/i3-cycle-workspace.py down
