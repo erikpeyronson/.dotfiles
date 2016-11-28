@@ -183,7 +183,7 @@ exec nm-applet
 exec dropbox start
 
 # focus follows mouse
-focus_follows_mouse no
+focus_follows_mouse yes
 
 
 # chrome mouse warping when changing screen
