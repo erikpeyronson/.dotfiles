@@ -111,7 +111,7 @@ bindsym $mod+u workspace u:term; exec [ $(ps h -C gnome-terminal- | wc -l) = 0 ]
 bindsym $mod+Shift+u move container to workspace u:term
 
 # special workspace emacs
-bindsym $mod+i workspace i:emacs; exec [ $(ps h -C emacs | wc -l) = 0 ] && emacs
+bindsym $mod+i workspace i:emacs 
 bindsym $mod+Shift+i move container to workspace i:emacs
 
 # special workspace browser
@@ -184,6 +184,7 @@ exec dropbox start
 
 # focus follows mouse
 focus_follows_mouse no
+
 
 # chrome mouse warping when changing screen
 mouse_warping none
