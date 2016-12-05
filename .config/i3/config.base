@@ -111,12 +111,17 @@ bindsym $mod+u workspace u:term; exec [ $(ps h -C gnome-terminal- | wc -l) = 0 ]
 bindsym $mod+Shift+u move container to workspace u:term
 
 # special workspace emacs
-bindsym $mod+i workspace i:emacs 
+bindsym $mod+i workspace i:emacs
 bindsym $mod+Shift+i move container to workspace i:emacs
 
 # special workspace browser
 bindsym $mod+o workspace o:www; exec [ $(ps h -C chrome | wc -l) = 0 ] && google-chrome-stable
 bindsym $mod+Shift+o move container to workspace o:www
+
+# special workspace pdf
+bindsym $mod+p workspace p:pdf
+bindsym $mod+Shift+p move container to workspace p:pdf
+
 
 # restart i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
