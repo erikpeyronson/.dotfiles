@@ -31,8 +31,8 @@
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
-(add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/") t)
+;;(add-to-list 'package-archives
+;;             '("marmalade" . "http://marmalade-repo.org/packages/") t)
 (package-initialize)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -43,10 +43,12 @@
     ecb
     autopair
     nurumacs
+    smooth-scroll
     sublimity
+    irony
     ;; sublimity-map
     ;; sublimity-attractive
-    ;; sublimity-scroll
+    ;;sublimity-scroll
   ) "a list of packages to ensure are installed at launch.")
 
 (require 'cl)
@@ -84,7 +86,7 @@
 ;(autopair-global-mode)
 
 ;;nurumacs
-(require 'nurumacs)
+;;(require 'nurumacs)
 
 ;;autostart minor modes
 (global-linum-mode 1)
@@ -119,6 +121,12 @@
 (global-set-key (kbd "C-M-0") (lambda () (interactive) (insert "}")))
 (global-set-key (kbd "C-M-+") (lambda () (interactive) (insert "\\")))
 
+(global-set-key (kbd "C-1") (lambda () (interactive) (insert "\\begin{itemize}")))
+(global-set-key (kbd "C-2") (lambda () (interactive) (insert "\\item ")))
+(global-set-key (kbd "C-3") (lambda () (interactive) (insert "\\end{itemize}")))
+(global-set-key (kbd "C-4") (lambda () (interactive) (insert "\\emph{}")))
+(global-set-key (kbd "C-5") (lambda () (interactive) (insert "\\subsection{}")))
+(global-set-key (kbd "C-6") (lambda () (interactive) (insert "\\subsubsection{}")))
 
 ;;Set backspace to ctrl+h
 (global-set-key [(control ?h)] 'delete-backward-char)
@@ -145,15 +153,36 @@
 (global-set-key (kbd "<M-down-down>") 'ecb-goto-window-methods)
 (global-set-key (kbd "<M-right>") 'ecb-goto-window-edit-last)
 
-
-(put 'set-goal-column 'disabled nil)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;
 ;;Major mode file extensions;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.tcc\\'" . c++-mode))
+
+;;;;;;;;;;;;;;;;
+;;;minor modes;;
+;;;;;;;;;;;;;;;;
+
+;; smooth scroll mode
+(require 'smooth-scroll)
+(smooth-scroll-mode 1);
+
+;; Irony autocomplete
+(add-hook 'c++-mode-hook 'irony-mode)
+(add-hook 'c-mode-hook 'irony-mode)
+(add-hook 'objc-mode-hook 'irony-mode)
+
+;; replace the `completion-at-point' and `complete-symbol' bindings in
+;; irony-mode's buffers by irony-mode's function
+(defun my-irony-mode-hook ()
+  (define-key irony-mode-map [remap completion-at-point]
+    'irony-completion-at-point-async)
+  (define-key irony-mode-map [remap complete-symbol]
+    'irony-completion-at-point-async))
+(add-hook 'irony-mode-hook 'my-irony-mode-hook)
+(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+
 
 ;; Sublimity
 (add-to-list 'load-path "/path/to/.emacs.d/sublimity/")
@@ -162,10 +191,12 @@
 (require 'sublimity-map)
 (require 'sublimity-attractive)
 ;;(sublimity-mode 1)
-(setq sublimity-attractive-centering-width nil)
-(setq sublimity-map-size 21)
-(sublimity-attractive-hide-bars)
-(sublimity-attractive-hide-vertical-border)
+;; (setq sublimity-attractive-centering-width nil)
+;; (setq sublimity-map-size 21)
+;; (sublimity-attractive-hide-bars)
+;; (sublimity-attractive-hide-vertical-border)
 
 ;; color
 (load-theme 'labburn t)
+
+
