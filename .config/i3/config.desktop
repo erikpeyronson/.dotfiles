@@ -1,24 +1,31 @@
 # this i3 configuration template contains system specific
 # configuration for a multihead desktop system
 
+# set screen layout
+exec ~/.scripts/screenlayout/desktop-default.sh
+
 # locking workspaces to specific screens
 workspace 1 output DP1
 workspace 2 output HDMI2
 workspace 3 output HDMI1
 workspace u:term output DP1
-workspace i:emacs output HDMI2
-#workspace o:www output HDMI1
-workspace kp0:mail output HDMI1
-workspace kp1:irc output HDMI1
-workspace kp2:spotify output HDMI1
-workspace kp3:calibre output HDMI1
-workspace kp4:bitcoin output HDMI1
+# workspace i:emacs output HDMI2
+# workspace o:www output HDMI1
+# workspace kp0:mail output HDMI1
+# workspace kp0:social output HDMI1
+# workspace kp2:spotify output HDMI1
+# workspace kp3:calibre output HDMI1
 
 # special workspaces
 ###
 
-# special workspace mail
-bindsym $mod+KP_0 workspace kp0:mail; exec [ $(ps h -C thunderbird | wc -l) = 0 ] && thunderbird
+# special workspace social
+bindsym $mod+KP_0 workspace kp0:social; exec [ $(ps h -C hexchat | wc -l) = 0 ] && hexchat
+
+# Assign URxvt terminals to workspace 2
+assign [class="franz"] kp0:social
+assign [class="hexchat"] kp0:social
+
 
 # special workspace thunar	    
 bindsym $mod+KP_1 workspace kp1:thunar; exec [ $(ps h -C thunar | wc -l) = 0 ] && thunar
@@ -26,18 +33,12 @@ bindsym $mod+KP_1 workspace kp1:thunar; exec [ $(ps h -C thunar | wc -l) = 0 ] &
 # special workspace virtualbox    
 bindsym $mod+KP_2 workspace kp2:virtualbox; exec [ $(ps h -C VirtualBox | wc -l) = 0 ] && virtualbox
 
-# special workspace irc
-bindsym $mod+KP_3 workspace kp3:irc; exec [ $(ps h -C hexchat | wc -l) = 0 ] && hexchat
-
 # special workspace spotify
-bindsym $mod+KP_4 workspace kp4:spotify; exec [ $(ps h -C spotify | wc -l) = 0 ] && spotify
+bindsym $mod+KP_3 workspace kp3:spotify; exec [ $(ps h -C spotify | wc -l) = 0 ] && spotify
 
 # special workspace calibre
-bindsym $mod+KP_5 workspace kp5:calibre; exec [ $(ps h -C calibre | wc -l) = 0 ] && calibre
+bindsym $mod+KP_4 workspace kp4:calibre; exec [ $(ps h -C calibre | wc -l) = 0 ] && calibre
 
-# speical workspace bitcoin
-bindsym $mod+KP_6 workspace kp6:bitcoin; exec [ $(ps h -C bitcoin-qt | wc -l) = 0 ] && bitcoin-qt
-assign [class="Bitcoin-qt"] kp4:bitcoin
 
 # Multimedia controll
 bindsym XF86AudioPlay exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
@@ -48,24 +49,27 @@ bindsym XF86AudioPrev exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2
 bindsym $mod+Control+Shift+j move workspace to output left
 bindsym $mod+Control+Shift+odiaeresis move workspace to output right
 
+# activate third screen
+
+bindsym $mod+Control+Shift+1 exec ~/.scripts/screenlayout/desktop-tripple.sh; nitrogen --restore
+
+# activate third screen
+
+bindsym $mod+Control+Shift+2 exec ~/.scripts/screenlayout/desktop-default.sh; nitrogen --restore
+
 
 # autostart applications
 ###
 
 # gnome terminal
-exec --no-startup-id i3-msg 'workspace u:term; exec gnome-terminal; exec gnome-terminal'
-
-# set screen layout
-exec ~/.scripts/screenlayout/desktop-default.sh
+exec --no-startup-id i3-msg 'workspace kp0:social; exec hexchat; workspace kp0:social; exec ~/Apps/franz/Franz'
 
 # rebuild config file and reload the configuration file
 bindsym $mod+Shift+c exec i3-mkcfg-desktop.sh; reload
 # rebuild config file restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r exec i3-mkcfg-desktop.sh; exec i3-msg restart
+bindsym $mod+Shift+r exec ~/.scripts/i3-mkcfg-desktop.sh; exec i3-msg restart
 
 # Cycle through workspaces on active monitor
 bindsym $mod+Up exec python ~/.scripts/i3-cycle-workspace.py up
 bindsym $mod+Down exec python ~/.scripts/i3-cycle-workspace.py down
 
-bindcode 64+50+46 exec python ~/.scripts/i3-cycle-workspace.py up
-bindcode 64+50+45 exec python ~/.scripts/i3-cycle-workspace.py up
