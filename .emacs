@@ -121,13 +121,6 @@
 (global-set-key (kbd "C-M-0") (lambda () (interactive) (insert "}")))
 (global-set-key (kbd "C-M-+") (lambda () (interactive) (insert "\\")))
 
-(global-set-key (kbd "C-1") (lambda () (interactive) (insert "\\begin{itemize}")))
-(global-set-key (kbd "C-2") (lambda () (interactive) (insert "\\item ")))
-(global-set-key (kbd "C-3") (lambda () (interactive) (insert "\\end{itemize}")))
-(global-set-key (kbd "C-4") (lambda () (interactive) (insert "\\emph{}")))
-(global-set-key (kbd "C-5") (lambda () (interactive) (insert "\\subsection{}")))
-(global-set-key (kbd "C-6") (lambda () (interactive) (insert "\\subsubsection{}")))
-
 ;;Set backspace to ctrl+h
 (global-set-key [(control ?h)] 'delete-backward-char)
 (global-set-key (kbd "C-M-h") 'backward-kill-word)
@@ -137,14 +130,26 @@
 ;; M-c M-x uncomment region
 (global-set-key "\C-c\M-c" 'uncomment-region)
 
-;;Compile comman
+;;Compile command
 (setq compile-command "g++ -std=c++17 -pedantic -Wall -Wextra -o")
 
 ;;C-x C-b used for buffer selection
 (global-set-key (kbd "C-x C-b") 'bs-show)
 
-;;indent using spaces instead of tabs
-(setq-default indent-tabs-mode nil)
+;; Latex-mode specific keybindings to add commonly used templates
+(add-hook 'latex-mode-hook
+          '(lambda ()
+             (define-key latex-mode-map (kbd "C-1") (lambda () (interactive) (insert "\\item")))
+             (define-key latex-mode-map (kbd "C-2") (lambda () (interactive) (insert "\\emph{")))
+             (define-key latex-mode-map (kbd "C-3") (lambda () (interactive) (insert "\\begin{itemize}")))
+             (define-key latex-mode-map (kbd "C-4") (lambda () (interactive) (insert "\\end{itemize")))
+             (define-key latex-mode-map (kbd "C-5") (lambda () (interactive) (insert "\\begin{enumerate")))
+             (define-key latex-mode-map (kbd "C-6") (lambda () (interactive) (insert "\\end{enumerate")))
+             (define-key latex-mode-map (kbd "C-7") (lambda () (interactive) (insert "\\chapter{")))
+             (define-key latex-mode-map (kbd "C-8") (lambda () (interactive) (insert "\\section{")))
+             (define-key latex-mode-map (kbd "C-9") (lambda () (interactive) (insert "\\subsection{")))
+             (define-key latex-mode-map (kbd "C-0") (lambda () (interactive) (insert "\\subsubsection{")))))
+
 
 ;;ECB KEYBINDINGS
 (global-set-key (kbd "<M-up>") 'ecb-goto-window-directories)
@@ -152,6 +157,9 @@
 (global-set-key (kbd "<M-down>") 'ecb-goto-window-history)
 (global-set-key (kbd "<M-down-down>") 'ecb-goto-window-methods)
 (global-set-key (kbd "<M-right>") 'ecb-goto-window-edit-last)
+
+;;indent using spaces instead of tabs
+(setq-default indent-tabs-mode nil)
 
 ;;;;;;;;;;;;;;;;;;;;;;;
 ;;Major mode file extensions;;
