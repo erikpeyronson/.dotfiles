@@ -76,6 +76,10 @@
 ;;LOAD PACKAGES;;
 ;;;;;;;;;;;;;;;;;
 
+(load "~/gitrepos/latextend-mode.el/latextend-mode.el")
+
+(load "~/gitrepos/latextend-mode.el/latextend-insert.el")
+
 ;;ECB
 ;;(require 'ecb)
 ;;(ecb-activate)
@@ -135,21 +139,6 @@
 
 ;;C-x C-b used for buffer selection
 (global-set-key (kbd "C-x C-b") 'bs-show)
-
-;; Latex-mode specific keybindings to add commonly used templates
-(add-hook 'latex-mode-hook
-          '(lambda ()
-             (define-key latex-mode-map (kbd "C-1") (lambda () (interactive) (insert "\\item")))
-             (define-key latex-mode-map (kbd "C-2") (lambda () (interactive) (insert "\\emph{")))
-             (define-key latex-mode-map (kbd "C-3") (lambda () (interactive) (insert "\\begin{itemize}")))
-             (define-key latex-mode-map (kbd "C-4") (lambda () (interactive) (insert "\\end{itemize")))
-             (define-key latex-mode-map (kbd "C-5") (lambda () (interactive) (insert "\\begin{enumerate")))
-             (define-key latex-mode-map (kbd "C-6") (lambda () (interactive) (insert "\\end{enumerate")))
-             (define-key latex-mode-map (kbd "C-7") (lambda () (interactive) (insert "\\chapter{")))
-             (define-key latex-mode-map (kbd "C-8") (lambda () (interactive) (insert "\\section{")))
-             (define-key latex-mode-map (kbd "C-9") (lambda () (interactive) (insert "\\subsection{")))
-             (define-key latex-mode-map (kbd "C-0") (lambda () (interactive) (insert "\\subsubsection{")))))
-
 
 ;;ECB KEYBINDINGS
 (global-set-key (kbd "<M-up>") 'ecb-goto-window-directories)
