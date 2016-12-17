@@ -43,4 +43,5 @@ flycheck_*.el
 
 #other files
 session.*
-/.emacs.d/auto-save-list
+/.emacs.d
+
