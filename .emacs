@@ -47,6 +47,33 @@
 (require 'yasnippet)
 (require 'latextend-mode)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;                           functions                              ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Function used for toggeling comments
+(defun comment-or-uncomment-region-or-line ()
+    "Comments or uncomments the region or the current line if there's no active region."
+    (interactive)
+    (let (beg end)
+        (if (region-active-p)
+            (setq beg (region-beginning) end (region-end))
+            (setq beg (line-beginning-position) end (line-end-position)))
+        (comment-or-uncomment-region beg end)))
+
+
+;; Minor mode to overwrite mode specific key-bindings
+(defvar my-keys-minor-mode-map
+  (let ((map (make-sparse-keymap)))
+    (define-key map (kbd "C-c C-c") 'comment-or-uncomment-region-or-line)
+    map)
+  "my-keys-minor-mode keymap.")
+
+(define-minor-mode my-keys-minor-mode
+  "A minor mode so that my key settings override annoying major modes."
+  :init-value t
+  :lighter " my-keys")
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                             Modes                                ;;
@@ -65,6 +92,7 @@
 ;; Global Mior Modes
 (global-linum-mode 1)
 (yas-global-mode 1)
+(my-keys-minor-mode 1)
 
 ;; Minor mode hooks
 (add-hook 'text-mode-hook 'auto-fill-mode)
@@ -94,9 +122,15 @@
 (global-set-key (kbd "<M-down-down>") 'ecb-goto-window-methods)
 (global-set-key (kbd "<M-right>") 'ecb-goto-window-edit-last)
 
+
+(global-set-key (kbd "C-c c") 'comment-or-uncomment-region-or-line)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                             General                              ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Load color theme
 (load-theme 'labburn t)
+
+
+
+
