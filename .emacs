@@ -16,6 +16,8 @@
     smooth-scroll
     zenburn-theme
     yasnippet
+    visible-mark
+    tabbar
   ))
 
 (require 'cl)
@@ -46,6 +48,7 @@
 (require 'ecb)
 (require 'yasnippet)
 (require 'latextend-mode)
+(require 'visible-mark)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                           functions                              ;;
@@ -66,6 +69,8 @@
 (defvar my-keys-minor-mode-map
   (let ((map (make-sparse-keymap)))
     (define-key map (kbd "C-c C-c") 'comment-or-uncomment-region-or-line)
+    (define-key map (kbd "C-x C-<left>") 'tabbar-forward-group)
+    (define-key map (kbd "C-x M-<right>") 'tabbar-backward-group)
     map)
   "my-keys-minor-mode keymap.")
 
@@ -93,6 +98,9 @@
 (global-linum-mode 1)
 (yas-global-mode 1)
 (my-keys-minor-mode 1)
+(global-visible-mark-mode 1)
+(ido-mode 1)
+(tabbar-mode 1)
 
 ;; Minor mode hooks
 (add-hook 'text-mode-hook 'auto-fill-mode)
@@ -103,6 +111,13 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; GLOBAL KEYBINDINGS
+;; Use buffer selection instead of bs show for C-x C-v
+(global-set-key (kbd "C-x C-b") 'bs-show)
+
+;; Use pseudo vim keybind ö and j for switching ta
+(global-set-key (kbd "C-x C-ö") 'tabbar-forward-tab)
+(global-set-key (kbd "C-x C-j") 'tabbar-backward-tab)
+
 
 ;; Insert some shift level 3 characters using C-M
 (global-set-key (kbd "C-M-7") (lambda () (interactive) (insert "{")))
@@ -131,6 +146,11 @@
 ;; Load color theme
 (load-theme 'zenburn t)
 
+;; ORG MODE
+(setq org-log-done 'time)
+
+;; Visible-mark
+(setq visible-mark-max 10)
 
 
 
@@ -141,7 +161,8 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("2bed8550c6f0a5ce635373176d5f0e079fb4fb5919005bfa743c71b5eed29d81" "ba9be9caf9aa91eb34cf11ad9e8c61e54db68d2d474f99a52ba7e87097fa27f5" "ac5584b12254623419499c3a7a5388031a29be85a15fdef9b94df2292d3e2cbb" "d606ac41cdd7054841941455c0151c54f8bff7e4e050255dbd4ae4d60ab640c1" "a0feb1322de9e26a4d209d1cfa236deaf64662bb604fa513cca6a057ddf0ef64" "ab04c00a7e48ad784b52f34aa6bfa1e80d0c3fcacc50e1189af3651013eb0d58" "04dd0236a367865e591927a3810f178e8d33c372ad5bfef48b5ce90d4b476481" "14f0fbf6f7851bfa60bf1f30347003e2348bf7a1005570fd758133c87dafe08f" "5cd0afd0ca01648e1fff95a7a7f8abec925bd654915153fb39ee8e72a8b56a1f" "f9574c9ede3f64d57b3aa9b9cef621d54e2e503f4d75d8613cbcc4ca1c962c21" default))))
+    ("2bed8550c6f0a5ce635373176d5f0e079fb4fb5919005bfa743c71b5eed29d81" "ba9be9caf9aa91eb34cf11ad9e8c61e54db68d2d474f99a52ba7e87097fa27f5" "ac5584b12254623419499c3a7a5388031a29be85a15fdef9b94df2292d3e2cbb" "d606ac41cdd7054841941455c0151c54f8bff7e4e050255dbd4ae4d60ab640c1" "a0feb1322de9e26a4d209d1cfa236deaf64662bb604fa513cca6a057ddf0ef64" "ab04c00a7e48ad784b52f34aa6bfa1e80d0c3fcacc50e1189af3651013eb0d58" "04dd0236a367865e591927a3810f178e8d33c372ad5bfef48b5ce90d4b476481" "14f0fbf6f7851bfa60bf1f30347003e2348bf7a1005570fd758133c87dafe08f" "5cd0afd0ca01648e1fff95a7a7f8abec925bd654915153fb39ee8e72a8b56a1f" "f9574c9ede3f64d57b3aa9b9cef621d54e2e503f4d75d8613cbcc4ca1c962c21" default)))
+ '(inhibit-startup-screen t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
