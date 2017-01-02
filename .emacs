@@ -48,7 +48,7 @@
 (require 'ecb)
 (require 'yasnippet)
 (require 'latextend-mode)
-(require 'visible-mark)
+;;(require 'visible-mark)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                           functions                              ;;
@@ -70,7 +70,7 @@
   (let ((map (make-sparse-keymap)))
     (define-key map (kbd "C-c C-c") 'comment-or-uncomment-region-or-line)
     (define-key map (kbd "C-x C-<left>") 'tabbar-forward-group)
-    (define-key map (kbd "C-x M-<right>") 'tabbar-backward-group)
+    (define-key map (kbd "C-x C-<right>") 'tabbar-backward-group)
     map)
   "my-keys-minor-mode keymap.")
 
@@ -98,7 +98,7 @@
 (global-linum-mode 1)
 (yas-global-mode 1)
 (my-keys-minor-mode 1)
-(global-visible-mark-mode 1)
+;;(global-visible-mark-mode 1)
 (ido-mode 1)
 (tabbar-mode 1)
 
@@ -156,6 +156,9 @@
 ;; Enable windowmove keybindings S-<arrow> to move between windows
 (windmove-default-keybindings)
 
+;; Save seesion on exit
+(desktop-save-mode 1)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -180,3 +183,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
