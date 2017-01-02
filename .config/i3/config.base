@@ -107,15 +107,15 @@ bindsym $mod+Shift+0 move container to workspace 10
 # special workspaces
 
 # special workspace term
-bindsym $mod+u workspace u:term; exec [ $(ps h -C gnome-terminal- | wc -l) = 0 ] && gnome-terminal
+bindsym $mod+u workspace u:term
 bindsym $mod+Shift+u move container to workspace u:term
 
 # special workspace emacs
-bindsym $mod+i workspace i:emacs; exec [ $(ps h -C emacs24 | wc -l) = 0 ] && emacs24
+bindsym $mod+i workspace i:emacs
 bindsym $mod+Shift+i move container to workspace i:emacs
 
 # special workspace browser
-bindsym $mod+o workspace o:www; exec [ $(ps h -C chrome | wc -l) = 0 ] && google-chrome-stable
+bindsym $mod+o workspace o:www
 bindsym $mod+Shift+o move container to workspace o:www
 
 # special workspace pdf
@@ -172,6 +172,8 @@ bar {
 exec ~/.scripts/screenlayout/desktop-default.sh
 exec setxkbmap -layout se
 
+# Stat emacs daemon
+exec emacs --daemon
 
 # toggle keyboard layout between se and u
 bindsym  $mod+y exec ~/.scripts/toggle-keyboard-layout.sh
