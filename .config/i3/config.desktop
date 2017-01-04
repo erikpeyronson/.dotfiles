@@ -49,14 +49,17 @@ bindsym XF86AudioPrev exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2
 bindsym $mod+Control+Shift+j move workspace to output left
 bindsym $mod+Control+Shift+odiaeresis move workspace to output right
 
-# activate third screen
+# all screens 
 
-bindsym $mod+Control+Shift+1 exec ~/.scripts/screenlayout/desktop-tripple.sh; nitrogen --restore
+bindsym $mod+Control+Shift+1 exec ~/.scripts/screenlayout/desktop-all.sh;exec nitrogen --restore
 
-# activate third screen
+# middle and right screen
 
-bindsym $mod+Control+Shift+2 exec ~/.scripts/screenlayout/desktop-default.sh; nitrogen --restore
+bindsym $mod+Control+Shift+2 exec ~/.scripts/screenlayout/desktop-middle-right.sh;exec nitrogen --restore
 
+# left and right screen
+
+bindsym $mod+Control+Shift+3 exec ~/.scripts/screenlayout/desktop-left-right.sh;exec nitrogen --restore
 
 # autostart applications
 ###
