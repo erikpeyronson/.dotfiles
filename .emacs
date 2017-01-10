@@ -104,16 +104,23 @@
 
 
 ;; Minor mode hooks
-(add-hook 'text-mode-hook 'auto-fill-mode)
-(add-hook 'latex-mode-hook 'latextend-mode)
+;;(add-hook 'text-mode-hook 'auto-fill-mode)
+;;(add-hook 'latex-mode-hook 'latextend-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                           Keybindings                            ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; GLOBAL KEYBINDINGS
+;; Swap C-j and RET behavior
+(global-set-key (kbd "C-j") 'newline-and-indent)
+(global-set-key (kbd "RET") 'newline)
+
 ;; Use buffer selection instead of bs show for C-x C-v
 (global-set-key (kbd "C-x C-b") 'bs-show)
+
+;; compile bound to C-c m
+(global-set-key (kbd "C-c RET") 'compile)
 
 ;; Use pseudo vim keybind ö and j for switching ta
 (global-set-key (kbd "C-x C-ö") 'tabbar-forward-tab)
@@ -140,6 +147,9 @@
 
 
 (global-set-key (kbd "C-c c") 'comment-or-uncomment-region-or-line)
+
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                             General                              ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
