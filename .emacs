@@ -12,12 +12,11 @@
 (defvar required-packages
   '(
     ecb
-    autopair
     smooth-scroll
     zenburn-theme
     yasnippet
-    visible-mark
     tabbar
+	desktop+
   ))
 
 (require 'cl)
@@ -40,14 +39,10 @@
     (when (not (package-installed-p p))
       (package-install p))))
 
-;; Load individual files
-(load "~/gitrepos/latextend-mode.el/latextend-mode.el")
-(load "~/gitrepos/latextend-mode.el/latextend-resources.el")
 
 ;; Require packages
 (require 'ecb)
 (require 'yasnippet)
-(require 'latextend-mode)
 ;;(require 'visible-mark)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
