@@ -7,11 +7,19 @@ exec xinput --disable 13
 # brightness keys
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp   exec sudo ~/.scripts/increase-brightness.sh 
-bindsym XF86MonBrightnessDown exec sudo ~/.scripts/decrease-brightness.sh
+bindsym XF86MonBrightnessUp exec xbacklight +10 
+bindsym XF86MonBrightnessDown exec xbacklight -10
 
 # set screen layout
 exec ~/.scripts/screenlayout/laptop-default.sh
+
+# suspend keybinding
+
+bindsym XF86Tools exec --no-startup-id i3lock -c 000000 && systemctl suspend
+
+# suspend after 5 min inactivity
+exec
+--no-startup-id xautolock -time 5 -locker '~/.scripts/lock-and-suspend.sh'&
 
 # rebuild config file and reload the configuration file
 bindsym $mod+Shift+c exec i3-mkcfg-laptop.sh; reload

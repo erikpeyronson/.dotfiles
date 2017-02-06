@@ -2,7 +2,7 @@
 # configuration for a multihead desktop system
 
 # set screen layout
-exec ~/.scripts/screenlayout/desktop-default.sh
+exec ~/.scripts/screenlayout/desktop-middle-right.sh
 
 # locking workspaces to specific screens
 workspace 1 output DP1
@@ -21,7 +21,7 @@ workspace u:term output DP1
 
 # special workspace social
 bindsym $mod+KP_0 workspace kp0:social; exec [ $(ps h -C hexchat | wc -l) = 0 ] && hexchat
-
+bindsym $mod+Shift+KP_0 move container to workspace kp0:social
 # Assign URxvt terminals to workspace 2
 assign [class="franz"] kp0:social
 assign [class="hexchat"] kp0:social
@@ -29,16 +29,19 @@ assign [class="hexchat"] kp0:social
 
 # special workspace thunar	    
 bindsym $mod+KP_1 workspace kp1:thunar; exec [ $(ps h -C thunar | wc -l) = 0 ] && thunar
+bindsym $mod+Shift+KP_1 move container to workspace kp1:thunar
 
 # special workspace virtualbox    
 bindsym $mod+KP_2 workspace kp2:virtualbox; exec [ $(ps h -C VirtualBox | wc -l) = 0 ] && virtualbox
+bindsym $mod+Shift+KP_2 move container to workspace kp2:virtualbox
 
 # special workspace spotify
 bindsym $mod+KP_3 workspace kp3:spotify; exec [ $(ps h -C spotify | wc -l) = 0 ] && spotify
+bindsym $mod+Shift+KP_3 move container to workspace kp3:spotify
 
 # special workspace calibre
 bindsym $mod+KP_4 workspace kp4:calibre; exec [ $(ps h -C calibre | wc -l) = 0 ] && calibre
-
+bindsym $mod+Shift+KP_4 move container to workspace kp4:calibre
 
 # Multimedia controll
 bindsym XF86AudioPlay exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
