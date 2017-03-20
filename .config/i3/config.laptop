@@ -1,8 +1,8 @@
 # this i3 configuration template contains system specific
-# configuration for a thinkpad l450 system
+# configuration for a thinkpad l450 laptop
 
 # disable touchpad
-exec xinput --disable 13
+exec xinput --disable 12
 
 # brightness keys
 
@@ -15,15 +15,13 @@ exec ~/.scripts/screenlayout/laptop-default.sh
 
 # suspend keybinding
 
-bindsym XF86Tools exec --no-startup-id i3lock -c 000000 && systemctl suspend
+bindsym XF86Tools exec ~/.scripts/lock.sh
 
 # suspend after 5 min inactivity
-exec
---no-startup-id xautolock -time 5 -locker '~/.scripts/lock-and-suspend.sh'&
+exec --no-startup-id xautolock -time 10 -locker '~/.scripts/lock.sh'&
 
 # rebuild config file and reload the configuration file
 bindsym $mod+Shift+c exec i3-mkcfg-laptop.sh; reload
 # rebuild config file restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r exec i3-mkcfg-laptop.sh; exec i3-msg restart
 
-#new comment to try the keybind asdfasdf hej din gay asdfasdfasdf

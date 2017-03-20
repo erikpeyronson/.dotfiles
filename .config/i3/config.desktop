@@ -19,29 +19,6 @@ workspace u:term output DP1
 # special workspaces
 ###
 
-# special workspace social
-bindsym $mod+KP_0 workspace kp0:social; exec [ $(ps h -C hexchat | wc -l) = 0 ] && hexchat
-bindsym $mod+Shift+KP_0 move container to workspace kp0:social
-# Assign URxvt terminals to workspace 2
-assign [class="franz"] kp0:social
-assign [class="hexchat"] kp0:social
-
-
-# special workspace thunar	    
-bindsym $mod+KP_1 workspace kp1:thunar; exec [ $(ps h -C thunar | wc -l) = 0 ] && thunar
-bindsym $mod+Shift+KP_1 move container to workspace kp1:thunar
-
-# special workspace virtualbox    
-bindsym $mod+KP_2 workspace kp2:virtualbox; exec [ $(ps h -C VirtualBox | wc -l) = 0 ] && virtualbox
-bindsym $mod+Shift+KP_2 move container to workspace kp2:virtualbox
-
-# special workspace spotify
-bindsym $mod+KP_3 workspace kp3:spotify; exec [ $(ps h -C spotify | wc -l) = 0 ] && spotify
-bindsym $mod+Shift+KP_3 move container to workspace kp3:spotify
-
-# special workspace calibre
-bindsym $mod+KP_4 workspace kp4:calibre; exec [ $(ps h -C calibre | wc -l) = 0 ] && calibre
-bindsym $mod+Shift+KP_4 move container to workspace kp4:calibre
 
 # Multimedia controll
 bindsym XF86AudioPlay exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
@@ -68,7 +45,7 @@ bindsym $mod+Control+Shift+3 exec ~/.scripts/screenlayout/desktop-left-right.sh;
 ###
 
 # gnome terminal
-exec --no-startup-id i3-msg 'workspace kp0:social; exec hexchat; workspace kp0:social; exec ~/Apps/franz/Franz'
+exec --no-startup-id i3-msg 'workspace 8:social; exec hexchat; workspace 8:social; exec ~/Apps/franz/franz'
 
 # rebuild config file and reload the configuration file
 bindsym $mod+Shift+c exec i3-mkcfg-desktop.sh; reload

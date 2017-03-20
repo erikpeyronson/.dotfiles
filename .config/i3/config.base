@@ -88,11 +88,11 @@ bindsym $mod+2 workspace 2
 bindsym $mod+3 workspace 3
 bindsym $mod+4 workspace 4
 bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
+# bindsym $mod+6 workspace 6
+# bindsym $mod+7 workspace 7
+# bindsym $mod+8 workspace 8
+# bindsym $mod+9 workspace 9
+# bindsym $mod+0 workspace 10
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
@@ -100,30 +100,75 @@ bindsym $mod+Shift+2 move container to workspace 2
 bindsym $mod+Shift+3 move container to workspace 3
 bindsym $mod+Shift+4 move container to workspace 4
 bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
+# bindsym $mod+Shift+6 move container to workspace 6
+# bindsym $mod+Shift+7 move container to workspace 7
+# bindsym $mod+Shift+8 move container to workspace 8
+# bindsym $mod+Shift+9 move container to workspace 9
+# bindsym $mod+Shift+0 move container to workspace 10
 
 
-# special workspaces
+# special workspaces U I O P
+####
 
 # special workspace term
-bindsym $mod+u workspace u:term
+bindsym $mod+u workspace u:term; 
 bindsym $mod+Shift+u move container to workspace u:term
 
 # special workspace emacs
-bindsym $mod+i workspace i:emacs
+bindsym $mod+i workspace i:emacs;
+#exec [ $(ps h -C emacs | wc -l) = 0 ] && emacs
 bindsym $mod+Shift+i move container to workspace i:emacs
+#assign [class="Emacs"] i:emacs
 
 # special workspace browser
-bindsym $mod+o workspace o:www
+bindsym $mod+o workspace o:www;  exec [ $(ps h -C chrome | wc -l) = 0 ] && google-chrome
 bindsym $mod+Shift+o move container to workspace o:www
+assign [class="Google-chrome"] o:www
 
-# special workspace pdf
-bindsym $mod+p workspace p:pdf
-bindsym $mod+Shift+p move container to workspace p:pdf
+# special workspace chromium for web-ui's
+bindsym $mod+p workspace p:admin; exec [ $(ps h -C chromium-browse | wc -l) = 0 ] && chromium-browser
+bindsym $mod+Shift+p move container to workspace p:admin
+assign [class="Chromium-browser"] p:admin
+
+# special workspace pd
+bindsym $mod+6 workspace 6:mail; exec [ $(ps h -C thunderbird | wc -l) = 0 ] && thunderbird
+bindsym $mod+Shift+6 move container to workspace 6:mail
+assign [class="Thunderbird"] 6:mail
+
+
+
+# Special workspaces 7 8 9 0
+##
+# 7 thunar
+# 8 spotif
+# 9 social 
+# 0 virtualbox
+
+# special workspace thunar	    
+bindsym $mod+7 workspace 7:thunar; exec [ $(ps h -C thunar | wc -l) = 0 ] && thunar
+bindsym $mod+Shift+7 move container to workspace kp7:thunar
+assign [class="Thunar"] 7:thunar
+
+# special workspace social
+bindsym $mod+8 workspace 8:social; 
+bindsym $mod+Shift+8 move container to workspace 8:social
+assign [class="Franz"] 8:social
+assign [class="Hexchat"] 8:social
+
+# special workspace spotify
+bindsym $mod+9 workspace 9:spotify;
+bindsym $mod+Shift+9 move container to workspace 9:spotify
+assign [class="Spotify"] 9:spotify
+
+# special workspace virtualbox    
+bindsym $mod+0 workspace 0:virtualbox;
+bindsym $mod+Shift+0 move container to workspace 0:virtualbox
+assign [class="VirtualBox"] 0:virtualbox
+
+# # special workspace calibre
+# bindsym $mod+KP_4 workspace kp4:calibre; exec [ $(ps h -C calibre | wc -l) = 0 ] && calibre
+# bindsym $mod+Shift+KP_4 move container to workspace kp4:calibre
+
 
 
 # restart i3 (logs you out of your X session)
@@ -171,13 +216,13 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         status_command i3status
-        tray_output primary
+        tray_output HDMI2
 }
 
 # set screen layout
 exec ~/.scripts/screenlayout/desktop-default.sh
-exec setxkbmap -layout se
-exec /usr/bin/setxkbmap -option ctrl:nocaps
+exec setxkbmap -layout s -option ctrl:swapcaps
+
 # Stat emacs daemon
 #exec emacs --daemon
 
