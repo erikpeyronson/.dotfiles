@@ -16,7 +16,8 @@
     zenburn-theme
     yasnippet
     tabbar
-	desktop+
+    desktop+
+    yaml-mode
   ))
 
 (require 'cl)
@@ -110,6 +111,7 @@
 ;; Swap C-j and RET behavior
 (global-set-key (kbd "C-j") 'newline-and-indent)
 (global-set-key (kbd "RET") 'newline)
+(global-set-key (kbd "C-c C-d") 'desktop+-load)
 
 ;; Use buffer selection instead of bs show for C-x C-v
 (global-set-key (kbd "C-x C-b") 'bs-show)
@@ -162,7 +164,7 @@
 (windmove-default-keybindings)
 
 ;; Save seesion on exit
-(desktop-save-mode 1)
+;;(desktop-save-mode 1)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -189,3 +191,7 @@
  ;; If there is more than one, they won't work right.
  )
 
+;; C/C++ settings
+(setq c-default-style "bsd")
+(setq c-basic-offset 4)
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode)) 
