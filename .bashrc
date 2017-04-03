@@ -119,7 +119,7 @@ fi
 
 #Set WWW_HOME variable to Azire IP-test
 WWW_HOME='https://www.azirevpn.com/check'
-export PATH="$PATH:$HOME/.scripts:$HOME/apps/franz"
+export PATH="$PATH:$HOME/Dropbox/Gitrepos/.scripts:$HOME/Dropbox/Programming/arduino-1.8.2"
 export WWW_HOME
 export EDITOR=nano
 

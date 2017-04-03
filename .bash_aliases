@@ -1,11 +1,15 @@
-alias sshserver='ssh 192.168.0.200'
+#alias sshserver='ssh 192.168.0.200'
 alias sshserverx='ssh -X 192.168.0.200'
 alias sshida='ssh eripe320@remote-und.ida.liu.se'
 alias sshidax='ssh -X eripe320@remote-und.ida.liu.se'
+
+alias sshmaster='ssh -X -p 2222 root@localhost'
+alias sshserver='ssh -X -p 2223 root@localhost' 
+alias sshclient='ssh -X -p 2224 root@localhost'
+  
+
 alias unrarall='unrar -r e *.rar'
 alias vpn='sudo openvpn --config ~/.vpn/AzireVPN-SE.ovpn'
-alias sysmonitor='cd ~/scripts && ./sensors.sh'
-alias backupkeydb='mv /mnt/server/viktigt/db.kdbx /mnt/server/viktigt/olddb/db.kdbx.old && cp ~/KPDB2/db.kdbx /mnt/server/viktigt'
 alias scan-image='sudo scanimage --mode Gray --resolution 300 > /storage/dokument/scan/raw/scan.tiff'
 
 #gcc aliases
@@ -22,3 +26,5 @@ alias gitprompt='PS1="$(__git_ps1)$PS1"'
 
 alias sd='sudo shutdown now'
 alias synctorrents='scp ~/Downloads/torrents 192.168.0.200:/storage/rtorrent/torrents'
+
+alias swapcaps='setxkbmap -option ctrl:swapcaps'
