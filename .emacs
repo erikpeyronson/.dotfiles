@@ -195,3 +195,5 @@
 (setq c-default-style "bsd")
 (setq c-basic-offset 4)
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode)) 
+
+(setq-default tab-width 2)

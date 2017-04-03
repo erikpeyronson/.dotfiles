@@ -15,10 +15,10 @@ exec ~/.scripts/screenlayout/laptop-default.sh
 
 # suspend keybinding
 
-bindsym XF86Tools exec ~/.scripts/lock.sh
+bindsym XF86Tools exec ~/.scripts/lock-and-suspend.sh
 
 # suspend after 5 min inactivity
-exec --no-startup-id xautolock -time 10 -locker '~/.scripts/lock.sh'&
+exec --no-startup-id xautolock -time 10 -locker '~/.scripts/lock-and-suspend.sh'&
 
 # rebuild config file and reload the configuration file
 bindsym $mod+Shift+c exec i3-mkcfg-laptop.sh; reload
