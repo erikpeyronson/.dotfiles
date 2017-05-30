@@ -63,6 +63,13 @@
 	(setq beg (line-beginning-position) end (line-end-position)))
       (comment-or-uncomment-region beg end)))
 
+;; Function to replace evaluated lisp-expression with return value
+(defun replace-last-sexp ()
+  (interactive)
+  (let ((value (eval (preceding-sexp))))
+    (kill-sexp -1)
+    (insert ( format "%S" value))))
+
 ;; Activate modes with prefix C-c m
 ;; (progn
 ;;   (define-prefix-command 'my-mode-map)
@@ -85,7 +92,47 @@
   :init-value t
   :lighter " my-keys")
 
+(defvar eval-replace-mode-map
+  (let ((map (make-sparse-keymap)))
+    (define-key map (kbd "C-x C-e") 'replace-last-sexp)
+    map)
+  "eval-replace-mode keymap" )
 
+;; Minor mode to overwrite eval with eval-and replace
+(define-minor-mode eval-replace-mode
+  :init-value t
+  :lighter " eval-replace-mode")
+  
+;; ;; Author: Patrick Gundlach 
+;; ;; nice mark - shows mark as a highlighted 'cursor' so user 'always' 
+;; ;; sees where the mark is. Especially nice for killing a region.
+
+;; (defvar pg-mark-overlay nil
+;;   "Overlay to show the position where the mark is") 
+;; (make-variable-buffer-local 'pg-mark-overlay)
+
+;; (put 'pg-mark-mark 'face 'secondary-selection)
+
+;; (defvar pg-mark-old-position nil
+;;   "The position the mark was at. To be able to compare with the
+;; current position")
+
+;; (defun pg-show-mark () 
+;;   "Display an overlay where the mark is at. Should be hooked into 
+;; activate-mark-hook" 
+;;   (unless pg-mark-overlay 
+;;     (setq pg-mark-overlay (make-overlay 0 0))
+;;     (overlay-put pg-mark-overlay 'category 'pg-mark-mark))
+;;   (let ((here (mark t)))
+;;     (when here
+;;       (move-overlay pg-mark-overlay here (1+ here)))))
+
+;; (defadvice  exchange-point-and-mark (after pg-mark-exchange-point-and-mark)
+;;   "Show visual marker"
+;;   (pg-show-mark))
+
+;; (ad-activate 'exchange-point-and-mark)
+;; (add-hook 'activate-mark-hook 'pg-show-mark)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                             Modes                                ;;
@@ -105,7 +152,7 @@
 (global-linum-mode 1)
 (yas-global-mode 1)
 (my-keys-minor-mode 1)
-(global-visible-mark-mode 1)
+;; (global-visible-mark-mode 1)
 (ido-mode 1)
 ;; (tabbar-mode 1)
 
@@ -128,13 +175,11 @@
 ;;(add-hook 'latex-mode-hook 'latextend-mode)
 
 ;;visible mark
-(defface visible-mark-active ;; put this before (require 'visible-mark)
-  '((((type tty) (class mono)))
-    (t (:background "magenta"))) "")
-(require 'visible-mark)
-;; (global-visible-mark-mode 1)
-;; (setq visible-mark-max 2)
-(setq visible-mark-faces `(visible-mark-face1 visible-mark-face2))
+;; (defface visible-mark-active ;; put this before (require 'visible-mark)
+;;   '((((type tty) (class mono)))
+;;     (t (:background "magenta"))) "")
+;; (require 'visible-mark)
+;; (setq visible-mark-faces `(visible-mark-face2)); visible-mark-face2))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                           Keybindings                            ;;
@@ -173,7 +218,8 @@
 (progn
   ;; define a prefix keymap
   (define-prefix-command 'my-mode-map)
-  (define-key my-mode-map (kbd "v") 'visible-mark-mode)
+  ;; (define-key my-mode-map (kbd "v") 'visible-mark-mode)
+  (define-key my-mode-map (kbd "r") 'eval-replace-mode)
   (define-key my-mode-map (kbd "<f7>") 'linum-mode)
   (define-key my-mode-map (kbd "<f8>") 'whitespace-mode)
   )
@@ -215,7 +261,7 @@
 (setq org-src-fontify-natively t) ;; Code highlighting in org mode
 
 ;; Visible-mark
-(setq visible-mark-max 10)
+;; (setq visible-mark-max 1)
 
 ;; Enable windowmove keybindings S-<arrow> to move between windows
 (windmove-default-keybindings)
